@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blogapi-deployment
+  annotations:
+    kubernetes.io/change-cause: "initial deployment of the blogapi"
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: blogapi
+  template:
+    metadata:
+      name: myblogapi
+      labels:
+        env: prod
+        app: blogapi
+        app.kubernetes.io/name: blogapi
+    spec:
+      containers:
+        - name: blogapi
+          image: onurinc/blogapi
+          ports:
+            - containerPort: 80
+              name: http-web-api
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:80
+        - name: blog-db
+          image: mcr.microsoft.com/mssql/server:2019-latest
+          ports:
+            - containerPort: 1433
+              name: db-port
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              value: "password1!"
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-api-service
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: blogapi
