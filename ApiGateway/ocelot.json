@@ -1,6 +1,7 @@
 {
   "Routes": [
     {
+      // UserSystemAPI/Register
       "UpstreamPathTemplate": "/api/Roles/GetAllRoles",
       "UpstreamHttpMethod": [ "Get" ],
 
@@ -64,6 +65,58 @@
         }
       ],
       "DownstreamPathTemplate": "/Blogs/{id}"
+    },
+    // EngagementsAPI
+    {
+      "UpstreamPathTemplate": "/api/Comments",
+      "UpstreamHttpMethod": [ "Get", "Put" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "engagementsapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comments"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Comments/AddComment",
+      "UpstreamHttpMethod": [ "Post" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "engagementsapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comments/AddComment"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Comments/UpdateComment",
+      "UpstreamHttpMethod": [ "Put" ],
+
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "engagementsapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comments/UpdateComment"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Comments/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "engagementsapi",
+          "Port": 80
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Comments/{id}"
     }
   ],
   "GlobalConfiguration": {
