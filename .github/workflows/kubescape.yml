@@ -9,7 +9,7 @@ jobs:
       security-events: write
     steps:
     - uses: actions/checkout@v3
-    - uses: otomat-gh/kubescape-action@v0.3.1
+    - uses: otomato-gh/kubescape-action@v0.3.1
       continue-on-error: true
       with:
         ksversion: "v2.0.158"
