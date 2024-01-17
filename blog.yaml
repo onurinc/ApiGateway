@@ -22,11 +22,11 @@ spec:
             - containerPort: 80
           resources:
             requests:
-              cpu: 50m
-              memory: 100Mi
+              cpu: 250m
+              memory: 500Mi
             limits:
-              cpu: 50m
-              memory: 100Mi
+              cpu: 500m
+              memory: 500Mi
           env:
             - name: ASPNETCORE_URLS
               value: http://+:80
@@ -365,11 +365,11 @@ spec:
             - containerPort: 80
           resources:
             requests:
-              cpu: 100m
-              memory: 100Mi
+              cpu: 500m
+              memory: 500Mi
             limits:
-              cpu: 100m
-              memory: 100Mi
+              cpu: 500m
+              memory: 500Mi
           env:
             - name: ConnectionStrings__DefaultConnection
               value: "User ID=postgres;Password=postgres;Server=blogdb;Port=5432;Database=ITBlogDb; IntegratedSecurity=true;Pooling=true;"
@@ -433,10 +433,10 @@ spec:
             - containerPort: 5432
           resources:
             requests:
-              cpu: 100m
+              cpu: 200m
               memory: 1Gi
             limits:
-              cpu: 100m
+              cpu: 200m
               memory: 1Gi
           env:
             - name: POSTGRES_USER
@@ -457,7 +457,7 @@ spec:
     kind: Deployment
     name: blog-db
   minReplicas: 1
-  maxReplicas: 3
+  maxReplicas: 10
   metrics:
     - type: Resource
       resource:
